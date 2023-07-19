@@ -6,7 +6,7 @@ function Expense() {
   const authCtx = useContext(AuthContext);
   return (
     <div>
-      <Link to={`/user/edit/${authCtx.userId}`}>Update Profile</Link>
+      <Link to={`/user/edit/${authCtx.userId}`}>Update Profile</Link>{" "}
     </div>
   );
 }

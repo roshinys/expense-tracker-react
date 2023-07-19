@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import Button from "../../UI/Button/Button";
 import AuthContext from "../../../store/auth/auth-context";
 import styles from "./UserEdit.module.css";
@@ -7,6 +7,33 @@ function UserEdit() {
   const authCtx = useContext(AuthContext);
   const nameRef = useRef("");
   const profileRef = useRef("");
+
+  useEffect(() => {
+    async function getUserDetail() {
+      const response = await fetch(
+        `https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=${process.env.REACT_APP_FIREBASE_APIKEY}`,
+        {
+          method: "POST",
+          body: JSON.stringify({
+            idToken: authCtx.token,
+          }),
+          headers: {
+            "Content-Type": "application-json",
+          },
+        }
+      );
+      if (!response.ok) {
+        console.log("failed to fetch user detail");
+        return;
+      }
+      const data = await response.json();
+      if (data.users && data.users.length > 0) {
+        nameRef.current.value = data.users[0].displayName;
+        profileRef.current.value = data.users[0].photoUrl;
+      }
+    }
+    getUserDetail();
+  });
 
   const cancelClickHandler = () => {
     nameRef.current.value = "";
