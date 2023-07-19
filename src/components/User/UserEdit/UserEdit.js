@@ -1,6 +1,7 @@
 import React, { useContext, useRef } from "react";
 import Button from "../../UI/Button/Button";
 import AuthContext from "../../../store/auth/auth-context";
+import styles from "./UserEdit.module.css";
 
 function UserEdit() {
   const authCtx = useContext(AuthContext);
@@ -40,14 +41,17 @@ function UserEdit() {
   };
 
   return (
-    <div>
+    <div className={styles.contactContainer}>
       <h3>Contact Details</h3>
-      <form onSubmit={updateUserHandler}>
-        <div>
+      <button className={styles.cancelButton} onClick={cancelClickHandler}>
+        Cancel
+      </button>
+      <form onSubmit={updateUserHandler} className={styles.formUpdate}>
+        <div className={styles.formdiv}>
           <label htmlFor="name">Full Name:</label>
           <input type="text" id="name" placeholder="Full Name" ref={nameRef} />
         </div>
-        <div>
+        <div className={styles.formdiv}>
           <label htmlFor="profilePic">Profile Picture Url:</label>
           <input
             type="text"
@@ -58,7 +62,6 @@ function UserEdit() {
         </div>
         <Button type="submit" name="Update Details" />
       </form>
-      <button onClick={cancelClickHandler}>Cancel</button>
     </div>
   );
 }
