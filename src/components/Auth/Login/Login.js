@@ -9,8 +9,8 @@ function Login() {
   const url =
     "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=";
 
-  const loginHandler = (token) => {
-    authCtx.login(token);
+  const loginHandler = (token, uid) => {
+    authCtx.login(token, uid);
     navigate("/expense");
   };
 

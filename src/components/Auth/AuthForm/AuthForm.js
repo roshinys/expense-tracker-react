@@ -68,7 +68,8 @@ function AuthForm(props) {
         if (props.login) {
           const data = await response.json();
           const token = data.idToken;
-          props.onLogin(token);
+          const uid = data.localId;
+          props.onLogin(token, uid);
         } else {
           props.onRegister();
         }

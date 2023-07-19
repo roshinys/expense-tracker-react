@@ -9,6 +9,7 @@ import {
 import Expense from "./components/Expense/Expense";
 import { useContext } from "react";
 import AuthContext from "./store/auth/auth-context";
+import UserEdit from "./components/User/UserEdit/UserEdit";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,18 @@ const router = createBrowserRouter([
         <Expense />
       </RequireAuth>
     ),
+  },
+  {
+    path: "/user/edit/:idToken",
+    element: (
+      <RequireAuth redirectTo="/login">
+        <UserEdit />
+      </RequireAuth>
+    ),
+  },
+  {
+    path: "*",
+    element: <p>404 Page Not Found</p>,
   },
 ]);
 

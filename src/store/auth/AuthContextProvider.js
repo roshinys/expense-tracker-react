@@ -3,7 +3,9 @@ import AuthContext from "./auth-context";
 
 const AuthContextProvider = (props) => {
   const initialToken = localStorage.getItem("token");
+  const initialUserId = localStorage.getItem("userId");
   const [token, setToken] = useState(initialToken);
+  const [userId, setUserId] = useState(initialUserId);
   const isLoggedIn = !!token;
 
   useEffect(() => {
@@ -18,9 +20,11 @@ const AuthContextProvider = (props) => {
     }
   }, []);
 
-  const login = (tokenId) => {
+  const login = (tokenId, uid) => {
     setToken(tokenId);
+    setUserId(uid);
     localStorage.setItem("token", tokenId);
+    localStorage.setItem("userId", uid);
     const expirationTime = Date.now() + 25 * 60 * 1000;
     localStorage.setItem("expirationTime", expirationTime);
     setTimeout(() => {
@@ -32,12 +36,13 @@ const AuthContextProvider = (props) => {
     setToken(null);
     localStorage.removeItem("token");
     localStorage.removeItem("expirationTime");
-    localStorage.removeItem("email");
+    localStorage.removeItem("userId");
   };
 
   return (
     <AuthContext.Provider
       value={{
+        userId: userId,
         token: token,
         isLoggedIn: isLoggedIn,
         login: login,
