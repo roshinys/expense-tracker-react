@@ -1,7 +1,7 @@
 import React, { useReducer, useState } from "react";
-import Input from "../Input/Input";
+import Input from "../../UI/Input/Input";
 import styles from "./AuthForm.module.css";
-import Button from "../Button/Button";
+import Button from "../../UI/Button/Button";
 
 const authReducer = (state, action) => {
   switch (action.type) {
