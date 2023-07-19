@@ -63,7 +63,15 @@ function AuthForm(props) {
         }
       );
       if (response.ok) {
-        //
+        setError(false);
+        setErrorMessage("");
+        if (props.login) {
+          const data = await response.json();
+          const token = data.idToken;
+          props.onLogin(token);
+        } else {
+          props.onRegister();
+        }
       } else {
         setError(true);
         const data = await response.json();
