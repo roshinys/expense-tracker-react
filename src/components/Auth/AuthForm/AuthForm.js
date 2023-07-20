@@ -67,13 +67,10 @@ function AuthForm(props) {
         setErrorMessage("");
         if (props.login) {
           const data = await response.json();
-          console.log(data);
           const token = data.idToken;
           const uid = data.localId;
           props.onLogin(token, uid);
         } else {
-          const data = await response.json();
-          console.log(data);
           props.onRegister();
         }
       } else {
