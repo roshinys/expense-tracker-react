@@ -10,6 +10,7 @@ import Expense from "./components/Expense/Expense";
 import { useContext } from "react";
 import AuthContext from "./store/auth/auth-context";
 import UserEdit from "./components/User/UserEdit/UserEdit";
+import ForgotPass from "./components/Auth/ForgotPass/ForgotPass";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
         <UserEdit />
       </RequireAuth>
     ),
+  },
+  {
+    path: "/forgotpassword",
+    element: <ForgotPass />,
   },
   {
     path: "*",

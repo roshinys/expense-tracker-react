@@ -2,6 +2,7 @@ import React, { useReducer, useState } from "react";
 import Input from "../../UI/Input/Input";
 import styles from "./AuthForm.module.css";
 import Button from "../../UI/Button/Button";
+import { Link } from "react-router-dom";
 
 const authReducer = (state, action) => {
   switch (action.type) {
@@ -112,6 +113,11 @@ function AuthForm(props) {
             onChange={passwordChangeHandler}
           />
           {error && <p className={styles.error}>{errorMessage}</p>}
+          {props.login && (
+            <div>
+              <Link to="/forgotpassword">forgot Password ?</Link>
+            </div>
+          )}
           <Button type="submit">
             {!loading ? `${props.name}` : "Sending Request"}
           </Button>
