@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Input from "../../UI/Input/Input";
 import Select from "../../UI/Select/Select";
 import Button from "../../UI/Button/Button";
+import styles from "./ExpenseForm.module.css";
 
 function ExpenseForm(props) {
   const [expense, setExpense] = useState("");
@@ -38,7 +39,11 @@ function ExpenseForm(props) {
   };
 
   return (
-    <form onSubmit={addExpenseHandler}>
+    <form
+      className={`container ${styles.expenseForm}`}
+      onSubmit={addExpenseHandler}
+    >
+      <h3>Expense Form</h3>
       <Input
         id="expense"
         type="number"

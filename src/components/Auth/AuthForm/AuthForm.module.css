@@ -14,3 +14,13 @@ form {
   left: 25%;
   width: 200px;
 }
+
+.forgotPass {
+  /* background-color: green; */
+  text-align: center;
+}
+
+.forgotPass a {
+  color: #f5acbe;
+  border: none;
+}
