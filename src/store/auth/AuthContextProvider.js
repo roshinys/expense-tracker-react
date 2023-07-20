@@ -45,6 +45,7 @@ const AuthContextProvider = (props) => {
         userId: userId,
         token: token,
         isLoggedIn: isLoggedIn,
+        emailVerified: true,
         login: login,
         logout: logout,
       }}
