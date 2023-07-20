@@ -4,9 +4,7 @@ export const addExpense = async (expense) => {
       `${process.env.REACT_APP_FIREBASE_EXPENSEURL}/expenses.json`,
       {
         method: "POST",
-        body: JSON.stringify({
-          expense,
-        }),
+        body: JSON.stringify(expense),
         headers: {
           "Content-Type": "application/json",
         },
@@ -39,13 +37,33 @@ export const getExpense = async () => {
     for (const key in data) {
       const expense = {
         id: key,
-        expense: data[key].expense.expense,
-        description: data[key].expense.description,
-        category: data[key].expense.category,
+        expense: data[key].expense,
+        description: data[key].description,
+        category: data[key].category,
       };
       expenses.push(expense);
     }
     return expenses;
+  } catch (err) {
+    alert(err);
+  }
+};
+
+export const deleteExpense = async (expenseId) => {
+  try {
+    const response = await fetch(
+      `${process.env.REACT_APP_FIREBASE_EXPENSEURL}/expenses/${expenseId}.json`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application.json",
+        },
+      }
+    );
+    if (!response.ok) {
+      throw new Error("Error While Deleting Expense");
+    }
+    return;
   } catch (err) {
     alert(err);
   }

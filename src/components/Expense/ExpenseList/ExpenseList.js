@@ -18,8 +18,10 @@ function ExpenseList(props) {
           {props.expenses.map((expense) => {
             return (
               <ExpenseItem
-                key={expense.id || Math.random()}
+                key={expense.id}
                 expense={expense}
+                onDelete={props.onDelete}
+                onEdit={props.onEdit}
               ></ExpenseItem>
             );
           })}

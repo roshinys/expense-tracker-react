@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { addExpense } from "../../api/expense-api";
 import Input from "../../UI/Input/Input";
 import Select from "../../UI/Select/Select";
@@ -9,6 +9,12 @@ function ExpenseForm(props) {
   const [expense, setExpense] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("petrol");
+  const editExpense = props.editExpense;
+  useEffect(() => {
+    setExpense(editExpense.expense);
+    setCategory(editExpense.category);
+    setDescription(editExpense.description);
+  }, [editExpense]);
 
   const expenseChangeHandler = (value) => {
     setExpense(value);

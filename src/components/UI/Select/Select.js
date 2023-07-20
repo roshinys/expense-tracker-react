@@ -13,6 +13,7 @@ function Select(props) {
         id={props.id}
         name={props.name}
         onChange={selectChangeHandler}
+        value={props.value}
       >
         {props.values.map((optionValue) => {
           return (

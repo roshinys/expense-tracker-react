@@ -16,6 +16,7 @@ function Input(props) {
         className={`form-control ${activeError}`}
         id={props.id}
         placeholder={props.placeholder}
+        value={props.value}
         onChange={inputChangeHandler}
       />
     </div>
