@@ -29,7 +29,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/user/edit/:idToken",
+    path: "/user/edit/:userId",
     element: (
       <RequireAuth redirectTo="/login">
         <UserEdit />

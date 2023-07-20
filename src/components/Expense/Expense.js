@@ -1,17 +1,11 @@
-import React, { useContext } from "react";
-import { Link } from "react-router-dom";
-import AuthContext from "../../store/auth/auth-context";
+import React from "react";
+import Header from "../Layout/Header/Header";
 
 function Expense() {
-  const authCtx = useContext(AuthContext);
-  const logoutHandler = () => {
-    authCtx.logout();
-  };
   return (
-    <div>
-      <Link to={`/user/edit/${authCtx.userId}`}>Update Profile</Link>
-      <button onClick={logoutHandler}>Logout</button>
-    </div>
+    <>
+      <Header />
+    </>
   );
 }
 

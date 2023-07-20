@@ -1,0 +1,26 @@
+.header {
+  /* background-color: green; */
+  display: flex;
+  justify-content: space-between;
+  padding: 0 15px;
+}
+
+.headerLinks {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.headerLinks a {
+  text-decoration: none;
+  margin-right: 20px;
+  color: white;
+  border-bottom: 2px solid #ff1e56;
+}
+
+.headerLinks a:hover {
+  cursor: pointer;
+  color: #ff1e56;
+  border-bottom: 2px solid white;
+}

@@ -112,10 +112,9 @@ function AuthForm(props) {
             onChange={passwordChangeHandler}
           />
           {error && <p className={styles.error}>{errorMessage}</p>}
-          <Button
-            type="submit"
-            name={!loading ? `${props.name}` : "Sending Request"}
-          />
+          <Button type="submit">
+            {!loading ? `${props.name}` : "Sending Request"}
+          </Button>
         </form>
       </div>
     </div>

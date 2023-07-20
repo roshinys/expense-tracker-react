@@ -2,11 +2,13 @@ import React, { useContext, useEffect, useRef } from "react";
 import Button from "../../UI/Button/Button";
 import AuthContext from "../../../store/auth/auth-context";
 import styles from "./UserEdit.module.css";
+import { useNavigate } from "react-router-dom";
 
 function UserEdit() {
   const authCtx = useContext(AuthContext);
   const nameRef = useRef("");
   const profileRef = useRef("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function getUserDetail() {
@@ -28,8 +30,12 @@ function UserEdit() {
       }
       const data = await response.json();
       if (data.users && data.users.length > 0) {
-        nameRef.current.value = data.users[0].displayName;
-        profileRef.current.value = data.users[0].photoUrl;
+        nameRef.current.value = data.users[0].displayName
+          ? data.users[0].displayName
+          : "";
+        profileRef.current.value = data.users[0].photoUrl
+          ? data.users[0].photoUrl
+          : "";
       }
     }
     getUserDetail();
@@ -38,6 +44,7 @@ function UserEdit() {
   const cancelClickHandler = () => {
     nameRef.current.value = "";
     profileRef.current.value = "";
+    navigate(-1);
   };
 
   const updateUserHandler = async (e) => {
@@ -87,7 +94,7 @@ function UserEdit() {
             ref={profileRef}
           />
         </div>
-        <Button type="submit" name="Update Details" />
+        <Button type="submit">"Update Details"</Button>
       </form>
     </div>
   );
