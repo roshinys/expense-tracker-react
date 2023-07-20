@@ -13,7 +13,7 @@ function Input(props) {
       <label htmlFor={props.id}>{props.label}</label>
       <input
         type={props.type}
-        className={`form-control ${activeError} `}
+        className={`form-control ${activeError}`}
         id={props.id}
         placeholder={props.placeholder}
         onChange={inputChangeHandler}

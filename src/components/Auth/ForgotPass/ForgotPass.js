@@ -1,15 +1,16 @@
-import React, { useRef } from "react";
+import React, { useState } from "react";
 import Button from "../../UI/Button/Button";
 import { useNavigate } from "react-router-dom";
+import Input from "../../UI/Input/Input";
+import styles from "./ForgotPass.module.css";
 
 function ForgotPass() {
   const navigate = useNavigate();
-  const emailRef = useRef("");
+  const [email, setEmail] = useState("");
 
   const resetPassHandler = async (e) => {
     e.preventDefault();
     try {
-      const email = emailRef.current.value;
       if (email.trim() === 0 || !email.includes("@")) {
         throw new Error("not a valid email address");
       }
@@ -26,7 +27,6 @@ function ForgotPass() {
           },
         }
       );
-      console.log(response);
       if (!response.ok) {
         throw new Error("Error checking email verification");
       }
@@ -39,12 +39,19 @@ function ForgotPass() {
     }
   };
 
+  const emailChangeHanddler = (value) => {
+    setEmail(value);
+  };
+
   return (
-    <form onSubmit={resetPassHandler}>
-      <div>
-        <label htmlFor="email">Email:</label>
-        <input type="email" id="email" placeholder="Email" ref={emailRef} />
-      </div>
+    <form className={styles.resetForm} onSubmit={resetPassHandler}>
+      <Input
+        id="email"
+        type="email"
+        placeholder="Email"
+        label="Email"
+        onChange={emailChangeHanddler}
+      />
       <Button type="submit">Send Reset Link</Button>
     </form>
   );
