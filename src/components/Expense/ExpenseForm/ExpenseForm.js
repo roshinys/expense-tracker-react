@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { addExpense } from "../../api/expense-api";
 import Input from "../../UI/Input/Input";
 import Select from "../../UI/Select/Select";
 import Button from "../../UI/Button/Button";
@@ -20,18 +21,20 @@ function ExpenseForm(props) {
     setCategory(value);
   };
 
-  const addExpenseHandler = (e) => {
+  const addExpenseHandler = async (e) => {
     e.preventDefault();
     if (
       parseInt(expense) > 0 &&
       description.length > 0 &&
       category.length > 0
     ) {
-      const newExpense = {
+      let newExpense = {
         expense: parseInt(expense),
         description: description,
         category: category,
       };
+      const expenseId = await addExpense(newExpense);
+      newExpense = { ...newExpense, id: expenseId };
       props.onAddExpense(newExpense);
     } else {
       alert("enter valid expense details");

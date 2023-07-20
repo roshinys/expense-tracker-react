@@ -17,7 +17,10 @@ function ExpenseList(props) {
         <tbody>
           {props.expenses.map((expense) => {
             return (
-              <ExpenseItem key={Math.random()} expense={expense}></ExpenseItem>
+              <ExpenseItem
+                key={expense.id || Math.random()}
+                expense={expense}
+              ></ExpenseItem>
             );
           })}
         </tbody>

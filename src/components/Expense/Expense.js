@@ -1,15 +1,25 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Header from "../Layout/Header/Header";
 import ExpenseForm from "./ExpenseForm/ExpenseForm";
 import ExpenseList from "./ExpenseList/ExpenseList";
+import { getExpense } from "../api/expense-api";
 
 function Expense() {
   const [expenses, setExpenses] = useState([]);
-  const addExpenseHandler = (newExpense) => {
+  useEffect(() => {
+    getExpense()
+      .then((expenses) => {
+        setExpenses(expenses);
+      })
+      .catch((err) => {
+        alert(err);
+      });
+  }, []);
+  const addExpenseHandler = useCallback((newExpense) => {
     setExpenses((prevState) => {
       return [...prevState, newExpense];
     });
-  };
+  }, []);
   return (
     <>
       <Header />
