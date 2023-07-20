@@ -1,13 +1,7 @@
 .active {
-  border-bottom: 3px solid rgb(243, 128, 128) !important;
+  border: 3px solid rgb(243, 128, 128) !important;
 }
 
 .divInput {
   margin-bottom: 10px;
-}
-
-.input {
-  background-color: white;
-  border: none !important;
-  border-bottom: 3px solid #fa0240 !important;
 }
