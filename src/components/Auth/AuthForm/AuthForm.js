@@ -1,4 +1,4 @@
-import React, { useReducer, useState, useCallback } from "react";
+import React, { useReducer, useState } from "react";
 import Input from "../../UI/Input/Input";
 import styles from "./AuthForm.module.css";
 import Button from "../../UI/Button/Button";
@@ -37,13 +37,13 @@ function AuthForm(props) {
   const [error, setError] = useState(false);
   const [loading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const emailChangeHandler = useCallback((value) => {
+  const emailChangeHandler = (value) => {
     dispatch({ type: "USER_EMAIL", payload: { email: value } });
-  }, []);
+  };
 
-  const passwordChangeHandler = useCallback((value) => {
+  const passwordChangeHandler = (value) => {
     dispatch({ type: "USER_PASSWORD", payload: { password: value } });
-  }, []);
+  };
 
   const submitHandler = async (e) => {
     e.preventDefault();
