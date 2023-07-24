@@ -5,9 +5,10 @@ import ExpenseList from "./ExpenseList/ExpenseList";
 import { getExpense, deleteExpense } from "../api/expense-api";
 import { useDispatch, useSelector } from "react-redux";
 import { expenseActions } from "../../store/expense-store";
+import ExpensePremium from "./ExpensePremium/ExpensePremium";
 
 function Expense() {
-  const expenses = useSelector((state) => state.expense.expenses);
+  const { expenses, totalExpense } = useSelector((state) => state.expense);
   const dispatch = useDispatch();
   const [editExpense, setEditExpense] = useState({
     expense: "",
@@ -39,12 +40,13 @@ function Expense() {
 
   const deleteExpenseHandler = async (expenseId) => {
     deleteExpense(expenseId);
-    dispatch(expenseActions.editExpense({ expenseId }));
+    dispatch(expenseActions.deleteExpense({ expenseId }));
   };
 
   return (
     <>
       <Header />
+      {totalExpense >= 1000 && <ExpensePremium />}
       <div className="row">
         <div className="col">
           <ExpenseForm

@@ -10,9 +10,7 @@ function ExpenseForm(props) {
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("petrol");
   const editExpense = props.editExpense;
-  console.log("expense form");
   useEffect(() => {
-    console.log("set edit expense");
     setExpense(editExpense.expense);
     setCategory(editExpense.category);
     setDescription(editExpense.description);
