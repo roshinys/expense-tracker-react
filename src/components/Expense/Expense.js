@@ -1,51 +1,45 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../Layout/Header/Header";
 import ExpenseForm from "./ExpenseForm/ExpenseForm";
 import ExpenseList from "./ExpenseList/ExpenseList";
 import { getExpense, deleteExpense } from "../api/expense-api";
+import { useDispatch, useSelector } from "react-redux";
+import { expenseActions } from "../../store/expense-store";
 
 function Expense() {
-  console.log("Expense");
-  const [expenses, setExpenses] = useState([]);
+  const expenses = useSelector((state) => state.expense.expenses);
+  const dispatch = useDispatch();
   const [editExpense, setEditExpense] = useState({
     expense: "",
     description: "",
     category: "petrol",
   });
-  const fetchExpenses = async () => {
-    try {
-      const fetchedExpenses = await getExpense();
-      setExpenses(fetchedExpenses);
-    } catch (err) {
-      alert(err);
-    }
-  };
 
   useEffect(() => {
+    const fetchExpenses = async () => {
+      try {
+        const fetchedExpenses = await getExpense();
+        dispatch(expenseActions.setExpense({ expenses: fetchedExpenses }));
+      } catch (err) {
+        alert(err);
+      }
+    };
     fetchExpenses();
-  }, []);
+  }, [dispatch]);
 
   const addExpenseHandler = (newExpense) => {
-    setExpenses((prevExpenses) => [...prevExpenses, newExpense]);
+    dispatch(expenseActions.addExpense({ newExpense: newExpense }));
   };
 
-  const editExpenseHandler = useCallback(
-    (expenseId) => {
-      console.log("edit expense");
-      const expenseToEdit = expenses.find((exp) => exp.id === expenseId);
-      setEditExpense(expenseToEdit);
-      deleteExpenseHandler(expenseId);
-    },
-    [expenses]
-  );
+  const editExpenseHandler = (expenseId) => {
+    const expenseToEdit = expenses.find((exp) => exp.id === expenseId);
+    setEditExpense(expenseToEdit);
+    deleteExpenseHandler(expenseId);
+  };
 
   const deleteExpenseHandler = async (expenseId) => {
     deleteExpense(expenseId);
-    setExpenses((prevState) => {
-      return prevState.filter((expense) => {
-        return expense.id !== expenseId;
-      });
-    });
+    dispatch(expenseActions.editExpense({ expenseId }));
   };
 
   return (
