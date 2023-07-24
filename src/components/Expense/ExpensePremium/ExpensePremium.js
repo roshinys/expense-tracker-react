@@ -10,6 +10,7 @@ function ExpensePremium() {
   const premiumClickHandler = () => {
     dispatch(authActions.setPremium({ isPremium: true }));
   };
+
   return (
     <div className={styles.premFeature}>
       {!isPremium && <Button onClick={premiumClickHandler}>Buy Premium</Button>}
