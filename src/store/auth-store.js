@@ -6,6 +6,9 @@ const initialAuthState = {
     ? localStorage.getItem("userId")
     : null,
   token: localStorage.getItem("token") ? localStorage.getItem("token") : null,
+  isPremium: localStorage.getItem("isPrem")
+    ? localStorage.getItem("isPrem")
+    : null,
 };
 
 const authSlice = createSlice({
@@ -16,7 +19,6 @@ const authSlice = createSlice({
       state.isAuthenticated = true;
       state.userId = action.payload.userId;
       state.token = action.payload.token;
-      console.log(action.payload);
       localStorage.setItem("userId", action.payload.userId);
       localStorage.setItem("token", action.payload.token);
     },
@@ -26,6 +28,10 @@ const authSlice = createSlice({
       state.token = null;
       localStorage.removeItem("userId");
       localStorage.removeItem("token");
+    },
+    setPremium(state) {
+      state.isPremium = true;
+      localStorage.setItem("isPrem", true);
     },
   },
 });

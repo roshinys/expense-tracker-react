@@ -1,15 +1,23 @@
 .header {
-  /* background-color: green; */
   display: flex;
   justify-content: space-between;
   padding: 0 15px;
+  margin-top: 5px;
 }
 
 .headerLinks {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-right: 20px;
+  margin: 0 5px;
+}
+
+.headerLinks svg {
+  padding: 0 7px;
+}
+
+.headerLinks svg:hover {
+  cursor: pointer;
 }
 
 .headerLinks a {
