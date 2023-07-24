@@ -40,7 +40,7 @@ function Expense() {
   );
 
   const deleteExpenseHandler = async (expenseId) => {
-    await deleteExpense(expenseId);
+    deleteExpense(expenseId);
     setExpenses((prevState) => {
       return prevState.filter((expense) => {
         return expense.id !== expenseId;

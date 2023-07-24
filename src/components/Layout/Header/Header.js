@@ -1,13 +1,15 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import Button from "../../UI/Button/Button";
-import AuthContext from "../../../store/auth/auth-context";
 import styles from "./Header.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import { authActions } from "../../../store/auth-store";
 
 function Header() {
-  const authCtx = useContext(AuthContext);
+  const userId = useSelector((state) => state.auth.userId);
+  const dispatch = useDispatch();
   const logoutHandler = () => {
-    authCtx.logout();
+    dispatch(authActions.logout());
   };
   return (
     <header className={styles.header}>
@@ -15,7 +17,7 @@ function Header() {
         <h3>Expense Tracker</h3>
       </div>
       <div className={styles.headerLinks}>
-        <Link to={`/user/edit/${authCtx.userId}`}>Update Profile</Link>
+        <Link to={`/user/edit/${userId}`}>Update Profile</Link>
         <Button onClick={logoutHandler}>Logout</Button>
       </div>
     </header>

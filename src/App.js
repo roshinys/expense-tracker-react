@@ -1,14 +1,13 @@
 import "./App.css";
 import Register from "./components/Auth/Register/Register";
 import Login from "./components/Auth/Login/Login";
+import { useSelector } from "react-redux";
 import {
   createBrowserRouter,
   RouterProvider,
   Navigate,
 } from "react-router-dom";
 import Expense from "./components/Expense/Expense";
-import { useContext } from "react";
-import AuthContext from "./store/auth/auth-context";
 import UserEdit from "./components/User/UserEdit/UserEdit";
 import ForgotPass from "./components/Auth/ForgotPass/ForgotPass";
 
@@ -52,12 +51,8 @@ function App() {
 }
 
 function RequireAuth(props) {
-  const authCtx = useContext(AuthContext);
-  return authCtx.isLoggedIn ? (
-    props.children
-  ) : (
-    <Navigate to={props.redirectTo} />
-  );
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  return isAuthenticated ? props.children : <Navigate to={props.redirectTo} />;
 }
 
 export default App;

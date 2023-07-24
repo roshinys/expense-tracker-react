@@ -1,11 +1,12 @@
-import React, { useContext } from "react";
+import React from "react";
 import AuthForm from "../AuthForm/AuthForm";
-import AuthContext from "../../../store/auth/auth-context";
 import { useNavigate } from "react-router-dom";
 import { verifyEmail, emailVerified } from "../../api/auth-api";
+import { useDispatch } from "react-redux";
+import { authActions } from "../../../store/auth-store";
 
 function Login() {
-  const authCtx = useContext(AuthContext);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const url =
     "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=";
@@ -17,7 +18,7 @@ function Login() {
       alert("Verify Your Email Please Only then You can Login");
       return;
     }
-    authCtx.login(token, uid);
+    dispatch(authActions.login({ token: token, userId: uid }));
     navigate("/expense");
   };
 

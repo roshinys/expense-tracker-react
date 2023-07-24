@@ -1,11 +1,11 @@
-import React, { useContext, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import Button from "../../UI/Button/Button";
-import AuthContext from "../../../store/auth/auth-context";
 import styles from "./UserEdit.module.css";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function UserEdit() {
-  const authCtx = useContext(AuthContext);
+  const token = useSelector((state) => state.auth.token);
   const nameRef = useRef("");
   const profileRef = useRef("");
   const navigate = useNavigate();
@@ -17,7 +17,7 @@ function UserEdit() {
         {
           method: "POST",
           body: JSON.stringify({
-            idToken: authCtx.token,
+            idToken: token,
           }),
           headers: {
             "Content-Type": "application-json",
@@ -56,7 +56,7 @@ function UserEdit() {
       {
         method: "POST",
         body: JSON.stringify({
-          idToken: authCtx.token,
+          idToken: token,
           photoUrl: imageUrl,
           displayName: name,
         }),
