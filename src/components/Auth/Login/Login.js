@@ -24,7 +24,14 @@ function Login() {
 
   return (
     <div className="container">
-      <AuthForm url={url} name="Sign In" login={true} onLogin={loginHandler} />
+      <AuthForm
+        url={url}
+        name="Sign In"
+        login={true}
+        onLogin={loginHandler}
+        redirectTo="/register"
+        redirectMessage="Don't have an acc sign up here."
+      />
     </div>
   );
 }

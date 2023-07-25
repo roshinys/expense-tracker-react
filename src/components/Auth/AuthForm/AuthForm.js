@@ -121,6 +121,9 @@ function AuthForm(props) {
           <Button type="submit">
             {!loading ? `${props.name}` : "Sending Request"}
           </Button>
+          <div className={styles.forgotPass}>
+            <Link to={props.redirectTo}>{props.redirectMessage}</Link>
+          </div>
         </form>
       </div>
     </div>

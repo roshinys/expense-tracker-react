@@ -17,6 +17,8 @@ function Register() {
         name="Sign Up"
         login={false}
         onRegister={registerHandler}
+        redirectTo="/login"
+        redirectMessage="Already have an acc? Sign in here..."
       />
     </div>
   );

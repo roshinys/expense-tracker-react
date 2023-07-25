@@ -13,6 +13,10 @@ import ForgotPass from "./components/Auth/ForgotPass/ForgotPass";
 
 const router = createBrowserRouter([
   {
+    path: "/",
+    element: <Navigate to="/expense" />,
+  },
+  {
     path: "/login",
     element: <Login />,
   },
@@ -20,6 +24,7 @@ const router = createBrowserRouter([
     path: "/register",
     element: <Register />,
   },
+
   {
     path: "/expense",
     element: (

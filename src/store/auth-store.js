@@ -8,7 +8,7 @@ const initialAuthState = {
   token: localStorage.getItem("token") ? localStorage.getItem("token") : null,
   isPremium: localStorage.getItem("isPrem")
     ? localStorage.getItem("isPrem")
-    : null,
+    : false,
 };
 
 const authSlice = createSlice({
